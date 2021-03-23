@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   before_create -> {self.token = generate_token}
 
